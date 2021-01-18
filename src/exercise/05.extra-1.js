@@ -59,6 +59,7 @@ function App() {
   const clickedTooMuch = timesClicked >= 4
 
   function toggleStateReducer(state, action) {
+    // 💬 using `clickedTooMuch` instead `timesClicked >= 4`
     if (action.type === 'toggle' && timesClicked >= 4) {
       return {on: state.on}
     }

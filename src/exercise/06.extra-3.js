@@ -18,6 +18,8 @@ function usePrevious(value) {
   return ref.current
 }
 
+// 💬 accept `controlPropName` and `componentName` props
+// 💬 maybe copy from https://github.com/reach/reach-ui/blob/a376daec462ccb53d33f4471306dff35383a03a5/packages/utils/src/index.tsx#L407-L443
 function useControlledSwitchWarning(controlPropValue) {
   const prevControlPropValue = usePrevious(controlPropValue)
 
@@ -111,6 +113,7 @@ function Toggle({on: controlledOn, initialOn, onChange, readOnly = false}) {
   const onIsControlled = controlledOn != null
   useControlledSwitchWarning(onIsControlled)
 
+  // 💬 create `useOnChangeReadOnlyWarning` hooks
   React.useEffect(() => {
     warning(
       !onIsControlled || (onIsControlled && (onChange || readOnly)),

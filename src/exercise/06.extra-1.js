@@ -84,8 +84,10 @@ function Toggle({on: controlledOn, initialOn, onChange, readOnly = false}) {
   const onIsControlled = controlledOn != null
   const props = getTogglerProps({on})
 
+  // 💬 move this logic to `useToggle`
   React.useEffect(() => {
     warning(
+      // 💬 change to `!(onIsControlled && !Boolean(onChange) && !readOnly`
       !onIsControlled || (onIsControlled && (onChange || readOnly)),
       'Failed prop type: You provided a `on` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `initialOn`. Otherwise, set either `onChange` or `readOnly`.',
     )

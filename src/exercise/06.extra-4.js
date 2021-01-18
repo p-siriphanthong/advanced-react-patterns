@@ -114,8 +114,9 @@ function Toggle({on: controlledOn, initialOn, onChange, readOnly = false}) {
   const props = getTogglerProps({on})
 
   const onIsControlled = controlledOn != null
-  useControlledSwitchWarning(onIsControlled)
+  useControlledSwitchWarning(onIsControlled) // 💬 add condition for do not declare it in production mode
 
+  // 💬 add condition for do not declare it in production mode
   React.useEffect(() => {
     warning(
       !onIsControlled || (onIsControlled && (onChange || readOnly)),

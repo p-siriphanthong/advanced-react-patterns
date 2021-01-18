@@ -7,6 +7,7 @@ import {Switch} from '../switch'
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn?.(...args))
 
+// 💬 change keys to lowercase
 const toggleActionTypes = {
   TOGGLE: 'toggle',
   RESET: 'reset',

@@ -78,19 +78,20 @@ function useUser() {
 // this function. It should accept: dispatch, user, and updates
 const updateUser = (dispatch, user, updates) => {
   dispatch({type: 'start update', updates})
+  // 💬 return this promise
   userClient.updateUser(user, updates).then(
-    updatedUser => dispatch({type: 'finish update', updatedUser}),
-    error => dispatch({type: 'fail update', error}),
+    updatedUser => dispatch({type: 'finish update', updatedUser}), // 💬 return `updatedUser`
+    error => dispatch({type: 'fail update', error}), // 💬 return `Promise.reject(error)`
   )
 }
 const resetUser = dispatch => {
   dispatch({type: 'reset'})
 }
 
-// export {UserProvider, useUser}
+// export {UserProvider, useUser} // 💬 export `updateUser` and `resetUser`
 
 // src/screens/user-profile.js
-// import {UserProvider, useUser} from './context/user-context'
+// import {UserProvider, useUser} from './context/user-context' // 💬 import `updateUser` and `resetUser`
 function UserSettings() {
   const [{user, status, error}, userDispatch] = useUser()
 

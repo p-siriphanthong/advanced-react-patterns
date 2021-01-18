@@ -28,6 +28,7 @@ const ToggleOn = ({on, children}) => (on ? children : null)
 const ToggleOff = ({on, children}) => (on ? null : children)
 
 // Accepts `on` and `toggle` props and returns the <Switch /> with those props.
+// 💬 also destructor other props `{...props}`
 const ToggleButton = ({on, toggle}) => <Switch on={on} onClick={toggle} />
 
 function App() {

@@ -94,19 +94,22 @@ function Toggle({on: controlledOn, initialOn, onChange, readOnly = false}) {
   const props = getTogglerProps({on})
 
   const onIsControlled = controlledOn != null
+  // 💬 maybe set initial value of `prevOnIsControlled` to `onIsControlled`
+  // 💬 change variable name from `prevOnIsControlled` to `onWasControlled`
   const prevOnIsControlled = usePrevious(onIsControlled)
 
+  // 💬 seperate useEffect for read-only warning case and  controlled switch warning case
   React.useEffect(() => {
     warning(
       !onIsControlled || (onIsControlled && (onChange || readOnly)),
       'Failed prop type: You provided a `on` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `initialOn`. Otherwise, set either `onChange` or `readOnly`.',
     )
     warning(
-      prevOnIsControlled == null || prevOnIsControlled || !onIsControlled, // !(!prevOnIsControlled && onIsControlled)
+      prevOnIsControlled == null || prevOnIsControlled || !onIsControlled, // 💬 change to `!(!prevOnIsControlled && onIsControlled)`
       'A component is changing an uncontrolled input of type undefined to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components',
     )
     warning(
-      prevOnIsControlled == null || !prevOnIsControlled || onIsControlled, // !(prevOnIsControlled && !onIsControlled)
+      prevOnIsControlled == null || !prevOnIsControlled || onIsControlled, // 💬 change to `!(prevOnIsControlled && !onIsControlled)`
       'A component is changing a controlled input of type undefined to be uncontrolled. Input elements should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components',
     )
   }, [onIsControlled, prevOnIsControlled, onChange, readOnly])
