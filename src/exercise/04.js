@@ -11,7 +11,8 @@ function useToggle() {
   // 🐨 Add a property called `togglerProps`. It should be an object that has
   // `aria-pressed` and `onClick` properties.
   // 💰 {'aria-pressed': on, onClick: toggle}
-  return {on, toggle}
+  const togglerProps = {'aria-pressed': on, onClick: toggle}
+  return {on, toggle, togglerProps}
 }
 
 function App() {
@@ -28,8 +29,3 @@ function App() {
 }
 
 export default App
-
-/*
-eslint
-  no-unused-vars: "off",
-*/
